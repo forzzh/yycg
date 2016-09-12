@@ -12,6 +12,12 @@
 		http://www.springframework.org/schema/aop/spring-aop-3.1.xsd 
 		http://www.springframework.org/schema/tx 
 		http://www.springframework.org/schema/tx/spring-tx-3.1.xsd ">
-
-
+	<!-- 药品目录 -->
+	<bean id="ypxxService" class="yycg.business.service.impl.YpxxServiceImpl" />
+	<!-- 药品目录 导入 -->
+	<bean id="ypxxImportService" class="yycg.business.service.impl.YpxxImportServiceImpl"/>
+	<!-- 供货商药品目录 -->
+	<bean id="ypmlService" class="yycg.business.service.impl.YpmlServiceImpl" />
+	<!-- 采购单管理 -->
+	<bean id="cgdService" class="yycg.business.service.impl.CgdServiceImpl"/>
 </beans>

@@ -16,8 +16,27 @@
 	<!-- 组件扫描 扫描所有标记@Controller类，由于使用自动扫描所以action类不用在spring配置文件中配置 -->
 	<context:component-scan base-package="yycg.**.action" />
 
-    <!-- 处理器映射器和适配器，可以使用mvc注解驱动 -->
-    <mvc:annotation-driven/>
+	<!-- 处理器映射器和适配器，可以使用mvc注解驱动 -->
+	<!-- 注解驱动 -->
+	<mvc:annotation-driven conversion-service="conversionService">
+		<mvc:argument-resolvers>  
+	           <bean class="yycg.base.action.converters.UserArgumentResolver"/>  
+	    </mvc:argument-resolvers> 
+		
+	</mvc:annotation-driven>
+
+<!-- 自定义注册属性编辑器 -->
+	<bean id="conversionService"
+		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="converters">
+			<list>
+				<bean class="yycg.base.action.converters.StringTrimConverter" />
+				<bean class="yycg.base.action.converters.DateConverter" />
+				<bean class="yycg.base.action.converters.DatetimeConverter" />
+			</list>
+		</property>
+	</bean>
+
 
 
 	<!-- 视图解析器 -->
@@ -28,18 +47,35 @@
 		<property name="prefix" value="/WEB-INF/jsp" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-     <!-- json转换器 -->
-     <bean id="jsonMessageConverter"
+	<!-- json转换器 -->
+	<bean id="jsonMessageConverter"
 		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
 	</bean>
-     
+
 	<!-- 统一异常处理类 -->
-	<bean id="handlerExceptionResolver"
-		class="yycg.base.process.exception.ExceptionResolverCustom">
+	<bean id="handlerExceptionResolver" class="yycg.base.process.exception.ExceptionResolverCustom">
 		<!-- 注入一个json转换器 -->
 		<property name="jsonMessageConverter" ref="jsonMessageConverter" />
 	</bean>
-	
+	<!-- 文件上传 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 设置上传文件的最大尺寸为5MB -->
+		<property name="maxUploadSize">
+			<value>5242880</value>
+		</property>
+	</bean>
 
+
+	<!-- 拦截器 -->
+	<mvc:interceptors>
+		<!-- 多个拦截器,顺序执行 -->
+		<!-- 用户身份校验的拦截器 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="yycg.base.filter.LoginInterceptor"></bean>
+		</mvc:interceptor>
+
+	</mvc:interceptors>
 
 </beans>

@@ -72,6 +72,15 @@ public class ExceptionResolverCustom implements HandlerExceptionResolver {
 		// 解析异常
 		ExceptionResultInfo exceptionResultInfo = resolveExceptionCustom(ex);
 
+		String view = "/base/error";
+		//异常代码
+		int messageCode = exceptionResultInfo.getResultInfo().getMessageCode();
+		//如果是106则跳转到登陆
+		if(messageCode==106){
+			//跳转到登陆
+			view = "/base/login";
+		}
+		
 		// 将异常信息在异常页面显示
 		request.setAttribute("exceptionResultInfo",
 				exceptionResultInfo.getResultInfo());
@@ -80,7 +89,7 @@ public class ExceptionResolverCustom implements HandlerExceptionResolver {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("exceptionResultInfo",
 				exceptionResultInfo.getResultInfo());
-		modelAndView.setViewName("/base/error");// 逻辑视图名
+		modelAndView.setViewName(view);// 逻辑视图名
 		return modelAndView;
 	}
 

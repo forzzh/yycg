@@ -24,10 +24,7 @@ public class SysuserCustomMapperTest extends TestCase {
 	}
 	
 	public void testFindSysuserById() throws Exception {
-		SysuserCustomMapper sysuserCustomMapper = (SysuserCustomMapper) applicationContext
-				.getBean("sysuserCustomMapper");
-		Sysuser sysuser =  sysuserCustomMapper.findSysuserById("286");
-		System.out.println(sysuser);
+		
 	}
 
 }

@@ -7,8 +7,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<!-- setting配置 -->
 	
 	<!-- 配置mapper.xml文件 -->
-	<!-- <mappers>
-	  
-	</mappers> -->
+	<mappers>
+	  	<mapper resource="yycg/base/dao/mapper/CommonSql.xml"/>
+	</mappers>
 
 </configuration>

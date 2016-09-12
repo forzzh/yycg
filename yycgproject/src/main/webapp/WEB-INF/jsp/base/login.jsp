@@ -76,10 +76,10 @@ $(document).ready(function(){
 
 	//登录提示方法
 	function loginsubmit() {
-		if(checkinput()){//校验表单，如果校验通过则执行jquerySubByFId
+		//if(checkinput()){//校验表单，如果校验通过则执行jquerySubByFId
 			//ajax form提交
 			jquerySubByFId('loginform', login_commit_callback,null,'json'); 
-		}
+		//}
 
 	}
 	//登录提示回调方法
@@ -102,8 +102,9 @@ $(document).ready(function(){
 	}
 	//回首页
 	function tofirst(){
-		
-		if(parent.parent.parent){
+		//window.location='${baseurl}first.action';
+		 if(parent.parent.parent){
+			 //让最外层页面执行跳转
 			parent.parent.parent.location='${baseurl}first.action';
 		}else if(parent.parent){
 			parent.parent.location='${baseurl}first.action';
@@ -112,7 +113,7 @@ $(document).ready(function(){
 		}else{
 			window.location='${baseurl}first.action';
 		}  
-		//window.location='${baseurl}first.action';
+	  
 	}
 </SCRIPT>
 </HEAD>
@@ -146,7 +147,7 @@ $(document).ready(function(){
 						</TR>
 						<TR>
 							<TD>验证码：</TD>
-							<TD><input id="randomcode" name="randomcode" size="8" /> <img
+							<TD><input id="randomcode" name="validateCode" size="8" /> <img
 								id="randomcode_img" src="${baseurl}validatecode.jsp" alt=""
 								width="56" height="20" align='absMiddle' /> <a
 								href=javascript:randomcode_refresh()>刷新</a></TD>

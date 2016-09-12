@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="yycg.business.dao.mapper.YpxxMapperCustom">
+	<!-- 药品目录 查询条件 -->
+	<sql id="query_ypxx_where">
+		<if test="ypxxCustom!=null">
+			<if test="ypxxCustom.bm!=null and ypxxCustom.bm!=''">
+				and ypxx.bm = #{ypxxCustom.bm}
+			</if>
+			<if test="ypxxCustom.mc!=null and ypxxCustom.mc!=''">
+				and ypxx.mc = #{ypxxCustom.mc}
+			</if>
+
+			<if test="ypxxCustom.jyzt!=null and ypxxCustom.jyzt!=''">
+				and ypxx.jyzt = #{ypxxCustom.jyzt}
+			</if>
+			<!-- 药品类别 -->
+			<if test="ypxxCustom.lb!=null and ypxxCustom.lb!=''">
+			  and ypxx.lb = #{ypxxCustom.lb}
+			</if>
+			<!-- 价格范围 -->
+			<if test="ypxxCustom.price_start!=null">
+			  and ypxx.price>=#{ypxxCustom.price_start}
+			</if>
+			<if test="ypxxCustom.price_end!=null">
+			 <![CDATA[
+			  and ypxx.price<=#{ypxxCustom.price_end}
+			  ]]>
+			</if>
+			<!-- ...... -->
+		</if>
+	</sql>
+
+	<!-- 药品目录 查询 -->
+	<select id="findYpxxList" parameterType="yycg.business.pojo.vo.YpxxQueryVo"
+		resultType="yycg.business.pojo.vo.YpxxCustom">
+		select id,
+		bm,
+		mc,
+		jx,
+		gg,
+		zhxs,
+		scqymc,
+		spmc,
+		zbjg,
+		jyzt,
+
+		(select info
+		from
+		dictinfo
+		where ypxx.jyzt = dictcode
+		and typecode = '003') jyztmc
+
+		from
+		ypxx
+
+		<where>
+			<include refid="query_ypxx_where" />
+		</where>
+
+
+	</select>
+</mapper>

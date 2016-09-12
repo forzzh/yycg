@@ -3,6 +3,29 @@
 <mapper namespace="yycg.base.dao.mapper.SysuserMapperCustom">
   
   <!-- sql片段 -->
+  
+    <!-- 供货商查询条件 -->
+    <sql id="query_usergys_where">
+      <if test="usergys!=null">
+        <if test="usergys.mc!=null and usergys.mc!=''">
+           and usergys.mc like '%${usergys.mc}%'
+        </if>
+      </if>
+    
+    </sql>
+    <!-- 医院查询条件 -->
+    <sql id="query_useryy_where">
+      <if test="useryy!=null">
+        <if test="useryy.mc!=null and useryy.mc!=''">
+           and useryy.mc like '%${useryy.mc}%'
+        </if>
+         <if test="useryy.id!=null and useryy.id!=''">
+           and useryy.id = #{useryy.id}
+        </if>
+      </if>
+    
+    </sql>
+    
 	<!-- 用户查询条件 通常情况，为了提高 sql片段可重用性，按单表创建sql片段 -->
 	<sql id="query_sysuser_where">
 		<if test="sysuserCustom!=null">

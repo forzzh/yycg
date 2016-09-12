@@ -19,14 +19,18 @@
   function sysusersave_callback(data){
 	 
 	  message_alert(data);
-
+	  //如果成功，自动关闭
+	 if(data.resultInfo.type =='1'){
+		 //延迟1秒执行关闭方法
+		 setTimeout("parent.closemodalwindow()", 1000);
+	 }
 	  
   }
  
 </script>
 </head>
 <body>
-
+ 
 
 <form id="userform" action="${baseurl}user/editsysusersubmit.action" method="post">
 <!-- 更新用户的id -->

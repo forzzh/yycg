@@ -57,8 +57,7 @@
 			$.messager.alert('提示信息',message,'info');
 		}
 	   */
-	 
-	  
+
   }
  
 </script>

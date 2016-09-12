@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="yycg.base.commonSql" >
+ 	<!-- 分页头 -->
+ 	<sql id="page_start">
+ 	<if test="pageQuery!=null">
+			select page_2.*
+			from (select page_1.*, rownum page_num
+			from
+			(
+		</if>
+ 	</sql>
+ 	<!-- 分页尾 -->
+ 	<sql id="page_end">
+		<if test="pageQuery!=null">
+			) page_1
+        <![CDATA[
+         where rownum <= ${pageQuery.PageQuery_end}) page_2
+ where page_2.page_num >= ${pageQuery.PageQuery_start}
+ ]]>
+		</if>
+ 	</sql>
+</mapper>

@@ -2,6 +2,24 @@
    "menus" : [{"icon" : "icon-sys","menuid" : "1","menuname" : "系统管理","url" : "","menus" : [
                  {"icon" : "icon-log","menuid" : "1_1","menuname" : "用户管理","url" : "/yycgproject/user/queryuser.action"
                  }] 
+               },
+               {"icon" : "icon-sys","menuid" : "1","menuname" : "药品目录 ","url" : "","menus" : [
+                 {"icon" : "icon-log","menuid" : "1_1","menuname" : "药品目录导出","url" : "/yycgproject/ypml/exportYpxx.action"
+                 },
+                 {"icon" : "icon-log","menuid" : "1_1","menuname" : "药品目录导入","url" : "/yycgproject/ypml/importypxx.action"
+                 }] 
+               },
+               {"icon" : "icon-sys","menuid" : "1","menuname" : "供货商药品目录 ","url" : "","menus" : [
+                 {"icon" : "icon-log","menuid" : "1_1","menuname" : "供货商药品目录维护","url" : "/yycgproject/ypml/querygysypml.action"
+                 },
+                 {"icon" : "icon-log","menuid" : "1_1","menuname" : "供货商药品目录控制","url" : "/yycgproject/ypml/querygysypmlcontrol.action"
+                 }] 
+               },
+               {"icon" : "icon-sys","menuid" : "1","menuname" : "采购单管理 ","url" : "","menus" : [
+                 {"icon" : "icon-log","menuid" : "1_1","menuname" : "创建采购单","url" : "/yycgproject/cgd/addcgd.action"
+                 }, 
+                 {"icon" : "icon-log","menuid" : "1_1","menuname" : "采购单维护","url" : "/yycgproject/cgd/yycgdlist.action"
+                 }] 
                }
              ]
 }
