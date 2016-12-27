@@ -67,7 +67,7 @@ public class HxlsRead extends HxlsAbstract{
 			}else{
 				//接口返回的结果是导入数据的结果，有成功，有失败
 				String result = hxlsOptRowsInterface.optRows(sheetIndex, curRow, rowlist);
-				if(result!=null && !result.equals(hxlsOptRowsInterface.SUCCESS)){
+				if(result!=null && !result.equals(HxlsOptRowsInterface.SUCCESS)){
 					optRows_failure++;//失败统计数加1
 					//失败数据列表
 					failrows.add(new ArrayList<String>(rowlist));
